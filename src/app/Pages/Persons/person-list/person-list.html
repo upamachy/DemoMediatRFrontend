@@ -1,29 +1,46 @@
 <div class="person-list-container">
   <h2>Persons</h2>
-  
+
   @if (loading()) {
-    <div class="loading">Loading persons...</div>
+    <div class="loading" aria-live="polite">Loading persons...</div>
   }
-  
+
   @if (error()) {
-    <div class="error">{{ error() }}</div>
+    <div class="error" role="alert">{{ error() }}</div>
   }
-  
+
   @if (persons().length > 0) {
-    <div class="person-grid">
-      @for (person of persons(); track person.id) {
-        <div class="person-card">
-          <h3>{{ person.firstName }} {{ person.lastName }}</h3>
-          <div class="actions">
-            <button type="button" class="edit-btn">Edit</button>
-            <button type="button" class="delete-btn">Delete</button>
-          </div>
-        </div>
-      }
+    <div class="table-wrapper">
+      <table class="person-table">
+        <caption class="visually-hidden">List of persons</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col" class="actions-col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (person of persons(); track person.id; let i = $index) {
+            <tr>
+              <td data-label="#"> {{ i + 1 }} </td>
+              <td data-label="First name">{{ person.firstName }}</td>
+              <td data-label="Last name">{{ person.lastName }}</td>
+              <td class="actions" data-label="Actions">
+                <button type="button" class="edit-btn">Edit</button>
+                <button type="button" class="delete-btn">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </div>
   } @else if (!loading()) {
     <div class="no-data">No persons found.</div>
   }
-  
+
   <button type="button" class="add-btn" routerLink="/person/create">Add New Person</button>
 </div>
+
+

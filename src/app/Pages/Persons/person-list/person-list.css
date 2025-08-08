@@ -4,3 +4,128 @@
   padding:0.5rem 0;
 }
 .small-spinner { width:2rem; height:2rem; }
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+  }
+
+  .person-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .person-table th,
+  .person-table td {
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+  }
+
+  .person-table thead {
+    background: #f5f7fa;
+  }
+
+  .person-table tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+
+  .person-table tbody tr:hover {
+    background: #eef6ff;
+  }
+
+  .person-table th {
+    font-weight: 600;
+    border-bottom: 2px solid #d5dbe3;
+  }
+
+  .person-table td {
+    border-bottom: 1px solid #e5e9ef;
+  }
+
+  .actions-col {
+    width: 140px;
+  }
+
+  .actions {
+    display: flex;
+    gap: .5rem;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    cursor: pointer;
+  }
+
+  .edit-btn:hover {
+    background: #e4f1ff;
+    border-color: #6aa8e6;
+  }
+
+  .delete-btn {
+    border-color: #e0b4b4;
+    background: #fdecec;
+  }
+
+  .delete-btn:hover {
+    background: #fcd3d3;
+    border-color: #d48a8a;
+  }
+
+  .add-btn {
+    margin-top: 1rem;
+  }
+
+  /* Accessible hide for caption */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Responsive labels (optional) */
+  @media (max-width: 640px) {
+    .person-table thead {
+      display: none;
+    }
+    .person-table,
+    .person-table tbody,
+    .person-table tr,
+    .person-table td {
+      display: block;
+      width: 100%;
+    }
+    .person-table tr {
+      margin-bottom: .85rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background: #fff;
+      padding: .4rem .6rem;
+    }
+    .person-table td {
+      border: none;
+      padding: .35rem 0;
+    }
+    .person-table td[data-label]::before {
+      content: attr(data-label) ": ";
+      font-weight: 600;
+      color: #555;
+    }
+    .actions {
+      justify-content: flex-start;
+    }
+  }
