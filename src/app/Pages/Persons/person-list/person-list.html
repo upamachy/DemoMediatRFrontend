@@ -1,0 +1,29 @@
+<div class="person-list-container">
+  <h2>Persons</h2>
+  
+  @if (loading()) {
+    <div class="loading">Loading persons...</div>
+  }
+  
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+  
+  @if (persons().length > 0) {
+    <div class="person-grid">
+      @for (person of persons(); track person.id) {
+        <div class="person-card">
+          <h3>{{ person.firstName }} {{ person.lastName }}</h3>
+          <div class="actions">
+            <button type="button" class="edit-btn">Edit</button>
+            <button type="button" class="delete-btn">Delete</button>
+          </div>
+        </div>
+      }
+    </div>
+  } @else if (!loading()) {
+    <div class="no-data">No persons found.</div>
+  }
+  
+  <button type="button" class="add-btn" routerLink="/person/create">Add New Person</button>
+</div>

@@ -1,0 +1,6 @@
+/* Add to component stylesheet */
+.table-toolbar {
+  display:flex; justify-content:space-between; align-items:center; gap:1rem;
+  padding:0.5rem 0;
+}
+.small-spinner { width:2rem; height:2rem; }
