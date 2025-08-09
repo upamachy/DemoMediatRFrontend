@@ -29,7 +29,14 @@
               <td data-label="Last name">{{ person.lastName }}</td>
               <td class="actions" data-label="Actions">
                 <button type="button" class="edit-btn" [routerLink]="['/edit', person.id]">Edit</button>
-                <button type="button" class="delete-btn">Delete</button>
+                <button
+                  type="button"
+                  class="delete-btn"
+                  (click)="confirmDelete(person)"
+                  [disabled]="deleting() === person.id"
+                >
+                  {{ deleting() === person.id ? 'Deleting...' : 'Delete' }}
+                </button>
               </td>
             </tr>
           }
