@@ -1,0 +1,23 @@
+/* center the card horizontally */
+.person-create-container {
+  max-width: 560px;
+  margin: 2rem auto;
+}
+
+/* center heading and status text */
+.person-create-container h2,
+.person-create-container .alert,
+.person-create-container .loading {
+  text-align: center;
+}
+
+.form-field + .form-field {
+  margin-top: 1rem; /* space between stacked fields */
+}
+
+.actions {
+  display: flex;
+  justify-content: center; /* center the buttons row */
+  gap: 1rem; /* increased space between buttons */
+  margin-top: 0.75rem;
+}

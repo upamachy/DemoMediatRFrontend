@@ -28,7 +28,7 @@
               <td data-label="First name">{{ person.firstName }}</td>
               <td data-label="Last name">{{ person.lastName }}</td>
               <td class="actions" data-label="Actions">
-                <button type="button" class="edit-btn">Edit</button>
+                <button type="button" class="edit-btn" [routerLink]="['/edit', person.id]">Edit</button>
                 <button type="button" class="delete-btn">Delete</button>
               </td>
             </tr>
@@ -40,7 +40,7 @@
     <div class="no-data">No persons found.</div>
   }
 
-  <button type="button" class="add-btn" routerLink="/person/create">Add New Person</button>
+  <button type="button" class="add-btn" routerLink="/create">Add New Person</button>
 </div>
 
 

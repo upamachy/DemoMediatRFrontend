@@ -1,1 +1,72 @@
-<p>person-create works!</p>
+<div class="person-create-container card">
+  <h2>Create Person</h2>
+
+  @if (error()) {
+    <div class="alert error" role="alert">{{ error() }}</div>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate [attr.aria-busy]="loading()" (keydown.escape)="cancel()">
+    <fieldset [disabled]="loading()">
+      <div class="form-field">
+        <label for="firstName">
+          First name <span class="req" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="firstName"
+          type="text"
+          formControlName="firstName"
+          required
+          maxlength="100"
+          autocomplete="given-name"
+          placeholder="Enter first name"
+          [attr.aria-invalid]="form.controls.firstName.invalid && form.controls.firstName.touched ? 'true' : null"
+          [attr.aria-describedby]="'firstNameHint' + (form.controls.firstName.errors ? ' firstNameErrors' : '')"
+          autofocus
+        />
+       
+        @if (form.controls.firstName.touched && form.controls.firstName.errors) {
+          <div id="firstNameErrors" class="validation" role="status" aria-live="polite">
+            @if (form.controls.firstName.errors['required']) { <span>First name is required.</span> }
+            @if (form.controls.firstName.errors['maxlength']) { <span>Max 100 characters.</span> }
+          </div>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="lastName">
+          Last name <span class="req" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="lastName"
+          type="text"
+          formControlName="lastName"
+          required
+          maxlength="100"
+          autocomplete="family-name"
+          placeholder="Enter last name"
+          [attr.aria-invalid]="form.controls.lastName.invalid && form.controls.lastName.touched ? 'true' : null"
+          [attr.aria-describedby]="'lastNameHint' + (form.controls.lastName.errors ? ' lastNameErrors' : '')"
+        />
+       
+        @if (form.controls.lastName.touched && form.controls.lastName.errors) {
+          <div id="lastNameErrors" class="validation" role="status" aria-live="polite">
+            @if (form.controls.lastName.errors['required']) { <span>Last name is required.</span> }
+            @if (form.controls.lastName.errors['maxlength']) { <span>Max 100 characters.</span> }
+          </div>
+        }
+      </div>
+
+      @if (loading()) {
+        <div class="loading" aria-live="polite">Creating person...</div>
+      }
+
+      <div class="actions">
+        <button type="submit" class="btn primary" [disabled]="loading() || form.invalid">
+          @if (loading()) { <span class="spinner" aria-hidden="true"></span> }
+          <span>{{ loading() ? 'Saving...' : 'Save' }}</span>
+        </button>
+        <button type="button" class="btn" (click)="cancel()">Cancel</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
